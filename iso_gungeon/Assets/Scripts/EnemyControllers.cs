@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class EnemyControllers : MonoBehaviour
 {
@@ -12,6 +14,7 @@ public class EnemyControllers : MonoBehaviour
     public float distance;
     Transform target;
     NavMeshAgent agent;
+    public Image forGround;
     void Start()
     {
         target = GameObject.FindWithTag("Player").transform;
@@ -22,13 +25,13 @@ public class EnemyControllers : MonoBehaviour
     void Update()
     {
         distance = Vector3.Distance(target.position, transform.position);
+        transform.GetChild(0).transform.LookAt(Camera.main.transform);
+        //Debug.Log(healthSlider);
+        //healthSlider.transform.position = transform.position + new Vector3(0f, 2f, 0f);
 
-        if (distance >= bombRadius)
-        {
+        if (distance >= bombRadius) {
             agent.SetDestination(target.position);
-        }
-        else
-        {
+        } else {
             StartCoroutine(ExplosionRaduis());
         }    
     }
@@ -36,6 +39,7 @@ public class EnemyControllers : MonoBehaviour
     public void TakeDamage(float amount)
     {
         health -= amount;
+        forGround.fillAmount = health / 3;
         if (health <= 0f)
         {
             isDead = true;
@@ -51,6 +55,8 @@ public class EnemyControllers : MonoBehaviour
             isDead = true;
             if (target.GetComponent<PlayerHealth>().health > 0)
                 target.GetComponent<PlayerHealth>().health--;
+            else
+                SceneManager.LoadScene(2);
         }
         else
             gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.blue);
