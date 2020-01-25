@@ -60,6 +60,7 @@
      <Compile Include="Assets\Scripts\CharController.cs" />
      <Compile Include="Assets\Scripts\EnemieSpawner.cs" />
      <Compile Include="Assets\Scripts\EnemyControllers.cs" />
+     <Compile Include="Assets\Scripts\EnSpawnProjectile.cs" />
      <Compile Include="Assets\Scripts\LaserScript.cs" />
      <Compile Include="Assets\Scripts\MainMenu.cs" />
      <Compile Include="Assets\Scripts\MoveProjectile.cs" />

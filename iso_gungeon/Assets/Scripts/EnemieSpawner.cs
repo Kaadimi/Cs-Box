@@ -11,13 +11,13 @@ public class EnemieSpawner : MonoBehaviour
     public float spawnLeastWait;
     public int startWait;
     int randEnemy;
-    int MaxEnemies = 10;
+    int MaxEnemies = 4;
     Vector3 spawnPosition;
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(waitSpawner());
-        spawnPosition = GameObject.FindWithTag("Spawner").transform.position;
+       // spawnPosition = GameObject.FindWithTag("Spawner").transform.position;
     }
 
     // Update is called once per frame
@@ -33,9 +33,9 @@ public class EnemieSpawner : MonoBehaviour
         
         for (int i = 0; i < MaxEnemies; i++)
         {
-            //randEnemy = Random.Range(0, 2);
+            randEnemy = Random.Range(0, 2);
 
-            en.Add(Instantiate (enemies[0], spawnPosition , gameObject.transform.rotation));
+            en.Add(Instantiate (enemies[randEnemy], transform.position , gameObject.transform.rotation));
 
             yield return new WaitForSeconds (spawnWait);
         }

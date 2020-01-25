@@ -8,6 +8,7 @@ TagManager:
   - ShowOnPause
   - Env
   - Enemy
+  - PlayerBullet
   layers:
   - Default
   - TransparentFX

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MoveProjectile : MonoBehaviour
 {
@@ -37,7 +38,6 @@ public class MoveProjectile : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         speed = 0;
 
-        Debug.Log(other.gameObject.tag);
         if (hitPrefab != null)
         {
             var hitVFX = Instantiate(hitPrefab,
@@ -52,8 +52,15 @@ public class MoveProjectile : MonoBehaviour
                 Destroy(hitVFX, psChild.main.duration);
             }
         }
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy" && gameObject.tag == "PlayerBullet")
             other.gameObject.GetComponent<EnemyControllers>().TakeDamage(1);
+        else if (other.gameObject.tag == "Player")
+        {
+            if (other.GetComponent<PlayerHealth>().health > 1)
+                other.GetComponent<PlayerHealth>().health--;
+            else
+                SceneManager.LoadScene(2);
+        }
         Destroy(gameObject);
     }
 }

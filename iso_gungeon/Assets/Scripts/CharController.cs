@@ -31,11 +31,20 @@ public class CharController : MonoBehaviour
 
     void Move()
     {
+        // if (Input.GetKeyDown(KeyCode.LeftShift))
+        //     StartCoroutine(PlayerDash());
         Vector3 rightMovement = right * moveSpeed * Time.deltaTime * Input.GetAxis("HorizontalKey");
         Vector3 upMovement = forward * moveSpeed * Time.deltaTime * Input.GetAxis("VerticalKey");
 
         transform.position += rightMovement;
         transform.position += upMovement;
+    }
+
+    IEnumerator PlayerDash()
+    {
+        moveSpeed += 20;
+        yield return new WaitForSeconds(1);
+        moveSpeed -= 20;
     }
 
     void turning ()

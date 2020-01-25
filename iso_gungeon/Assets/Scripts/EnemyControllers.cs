@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class EnemyControllers : MonoBehaviour
 {
-    // Start is called before the first frame update
     public float bombRadius = 5f;
     public bool isDead = false;
     public float health = 3f;
@@ -15,6 +14,7 @@ public class EnemyControllers : MonoBehaviour
     Transform target;
     NavMeshAgent agent;
     public Image forGround;
+
     void Start()
     {
         target = GameObject.FindWithTag("Player").transform;
@@ -53,7 +53,7 @@ public class EnemyControllers : MonoBehaviour
         if (distance < bombRadius)
         {
             isDead = true;
-            if (target.GetComponent<PlayerHealth>().health > 0)
+            if (target.GetComponent<PlayerHealth>().health > 1)
                 target.GetComponent<PlayerHealth>().health--;
             else
                 SceneManager.LoadScene(2);
