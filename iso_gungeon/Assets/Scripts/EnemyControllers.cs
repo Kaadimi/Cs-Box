@@ -26,6 +26,13 @@ public class EnemyControllers : MonoBehaviour
     {
         distance = Vector3.Distance(target.position, transform.position);
         transform.GetChild(0).transform.LookAt(Camera.main.transform);
+        if (agent.speed == 0)
+        {
+            transform.LookAt(target.position);
+            if (health == 0)
+                Destroy(gameObject);
+        }
+
         //Debug.Log(healthSlider);
         //healthSlider.transform.position = transform.position + new Vector3(0f, 2f, 0f);
 
@@ -56,7 +63,7 @@ public class EnemyControllers : MonoBehaviour
             if (target.GetComponent<PlayerHealth>().health > 1)
                 target.GetComponent<PlayerHealth>().health--;
             else
-                SceneManager.LoadScene(2);
+                SceneManager.LoadScene(4);
         }
         else
             gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.blue);

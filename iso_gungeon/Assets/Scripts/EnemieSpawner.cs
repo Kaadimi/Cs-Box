@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemieSpawner : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class EnemieSpawner : MonoBehaviour
     public float spawnLeastWait;
     public int startWait;
     int randEnemy;
-    int MaxEnemies = 4;
+    int MaxEnemies = 5;
     Vector3 spawnPosition;
     // Start is called before the first frame update
     void Start()
@@ -33,7 +34,11 @@ public class EnemieSpawner : MonoBehaviour
         
         for (int i = 0; i < MaxEnemies; i++)
         {
-            randEnemy = Random.Range(0, 2);
+            Debug.Log(SceneManager.GetActiveScene().name);
+            if (SceneManager.GetActiveScene().name == "Level_one")
+                randEnemy = 0;
+            else
+                randEnemy = Random.Range(0, 2);
 
             en.Add(Instantiate (enemies[randEnemy], transform.position , gameObject.transform.rotation));
 
