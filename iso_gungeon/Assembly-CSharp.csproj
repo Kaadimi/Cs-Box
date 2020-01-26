@@ -69,6 +69,7 @@
      <Compile Include="Assets\Scripts\PlayerManager.cs" />
      <Compile Include="Assets\Scripts\RotateToMouse.cs" />
      <Compile Include="Assets\Scripts\SpawnProjectile.cs" />
+     <Compile Include="Assets\Scripts\StableEnemy.cs" />
      <Compile Include="Assets\Scripts\TimeManager.cs" />
      <Compile Include="Assets\Scripts\UiManager.cs" />
      <Compile Include="Assets\voxel_scifi_free\Standard Assets\Characters\FirstPersonCharacter\Scripts\FirstPersonController.cs" />
